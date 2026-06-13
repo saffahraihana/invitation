@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saffah & Raihana — Nikkah 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#1a0a10;color:#3a2630;overflow-x:hidden}
+
+/* ── Cherry blossom palette ── */
+:root{
+  --cb1:#f9b8ce;--cb2:#f4d0dc;--cb3:#e8849a;--cb4:#c45c7a;
+  --cb5:#fce8ef;--cb-deep:#7a1a38;
+  --sage:#6aab7a;--sage-l:#e0f2e6;
+  --gold:#c9882a;--gold-l:#fdf0d8;
+  --sky:#5a9abf;--sky-l:#deeef8;
+  --peach:#e8924a;--peach-l:#fdeee0;
+  --lav:#9b7abf;--lav-l:#ede5f8;
+  --cream:#fff8f8;--text:#2a1018;--muted:#8a5a68;
+}
+
+/* ════════════════════════════════
+   ENVELOPE / OPENING ANIMATION
+════════════════════════════════ */
+#envelope-screen{
+  position:fixed;inset:0;z-index:9999;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:linear-gradient(160deg,#1a0a10 0%,#2e0d1e 60%,#0e0508 100%);
+  transition:opacity .8s ease, visibility .8s ease;
+}
+#envelope-screen.hide{opacity:0;visibility:hidden;pointer-events:none}
+
+.env-petals-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+
+/* Envelope body */
+.env-wrap{position:relative;width:240px;cursor:pointer;transition:transform .3s}
+.env-wrap:hover{transform:scale(1.03)}
+.env-body{
+  width:240px;height:160px;border-radius:4px 4px 16px 16px;
+  background:linear-gradient(160deg,#f9b8ce,#fce8ef);
+  position:relative;overflow:hidden;
+  box-shadow:0 20px 60px rgba(196,92,122,0.45),0 4px 20px rgba(0,0,0,0.3);
+}
+.env-body::before{/* bottom triangle */
+  content:'';position:absolute;bottom:0;left:0;right:0;
+  border-left:120px solid transparent;border-right:120px solid transparent;
+  border-bottom:90px solid #f4d0dc;
+}
+.env-body::after{/* side triangles */
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(to bottom-right,#f4c4d8 50%,transparent 50%),
+    linear-gradient(to bottom-left,#f4c4d8 50%,transparent 50%);
+  background-size:50% 70%, 50% 70%;
+  background-position:left bottom, right bottom;
+  background-repeat:no-repeat;
+}
+
+/* Envelope flap — animates open */
+.env-flap{
+  position:absolute;top:0;left:0;right:0;
+  width:0;height:0;
+  border-left:120px solid transparent;
+  border-right:120px solid transparent;
+  border-top:90px solid #e8849a;
+  transform-origin:top center;
+  transition:transform 0.7s cubic-bezier(.4,0,.2,1);
+  z-index:2;
+  filter:drop-shadow(0 4px 8px rgba(196,92,122,0.3));
+}
+.env-flap.open{transform:rotateX(-180deg)}
+
+/* Wax seal */
+.env-seal{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:52px;height:52px;border-radius:50%;
+  background:linear-gradient(135deg,#c45c7a,#7a1a38);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;z-index:3;
+  box-shadow:0 2px 12px rgba(122,26,56,0.5);
+  transition:opacity .4s, transform .4s;
+}
+.env-seal.hide{opacity:0;transform:translate(-50%,-50%) scale(0.6)}
+
+/* Card sliding out */
+.env-card-peek{
+  position:absolute;bottom:0;left:50%;transform:translateX(-50%) translateY(110%);
+  width:200px;height:130px;border-radius:10px;
+  background:linear-gradient(145deg,#fff5f8,#fce8ef);
+  box-shadow:0 -4px 24px rgba(196,92,122,0.25);
+  transition:transform 0.7s cubic-bezier(.4,0,.2,1) 0.3s;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:0.9rem;font-style:italic;color:var(--cb4);
+  text-align:center;line-height:1.5;padding:1rem;
+}
+.env-card-peek.show{transform:translateX(-50%) translateY(-20px)}
+
+.env-label{
+  margin-top:2.2rem;text-align:center;color:var(--cb2);
+  font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;
+  animation:pulse-label 2s ease-in-out infinite;
+}
+@keyframes pulse-label{0%,100%{opacity:.6}50%{opacity:1}}
+
+.env-names{
+  margin-top:0.9rem;text-align:center;
+  font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;
+  color:var(--cb1);letter-spacing:0.04em;
+}
+
+/* ════════════════════════════════
+   MAIN INVITATION
+════════════════════════════════ */
+#main{opacity:0;transition:opacity 1s ease .2s}
+#main.visible{opacity:1}
+
+/* Cherry blossom petal canvas */
+#blossom-canvas{
+  position:fixed;inset:0;pointer-events:none;z-index:100;overflow:hidden;
+}
+.blossom{
+  position:absolute;pointer-events:none;
+  animation:blossomFall linear infinite;
+  will-change:transform,opacity;
+}
+@keyframes blossomFall{
+  0%{transform:translateY(-40px) rotate(0deg) translateX(0);opacity:0}
+  5%{opacity:.9}
+  95%{opacity:.6}
+  100%{transform:translateY(105vh) rotate(720deg) translateX(var(--drift));opacity:0}
+}
+
+/* HERO */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:3rem 1.5rem 5rem;overflow:hidden;
+  background:linear-gradient(170deg,#2e0d1e 0%,#1a0a10 40%,#0e0508 100%);
+}
+.hero-floral{position:absolute;pointer-events:none;opacity:.45}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(249,184,206,0.15);border:0.5px solid rgba(249,184,206,0.4);
+  border-radius:999px;padding:6px 18px;margin-bottom:1.2rem;
+  font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--cb2);
+}
+.bismillah{font-size:1.6rem;color:var(--gold);margin-bottom:.4rem;opacity:.9}
+.hero-sub{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,208,220,.6);margin-bottom:1rem}
+.hero-names{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.6rem,10vw,4.2rem);font-weight:300;line-height:1.1;color:#fce8ef;
+}
+.hero-names .amp{display:block;font-style:italic;font-size:.5em;color:var(--cb1);letter-spacing:.08em;margin:.2em 0}
+.hero-date-chip{
+  display:inline-flex;align-items:center;gap:8px;margin-top:1.6rem;
+  background:linear-gradient(135deg,var(--cb4),var(--cb-deep));
+  color:white;border-radius:999px;padding:8px 22px;
+  font-size:.84rem;font-weight:500;letter-spacing:.04em;
+}
+.hero-verse{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1rem;color:rgba(244,208,220,.65);margin-top:1.4rem;
+  max-width:280px;line-height:1.8;
+}
+.scroll-cue{
+  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:5px;
+  animation:bob 2.2s ease-in-out infinite;
+}
+.scroll-cue span{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,208,220,.45)}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
+
+/* Sections */
+.band{padding:2.8rem 1.4rem;max-width:480px;margin:0 auto}
+.lbl{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;display:block;margin-bottom:.5rem}
+.stitle{font-family:'Cormorant Garamond',serif;font-size:1.85rem;font-weight:300;line-height:1.2;margin-bottom:1.2rem;color:var(--text)}
+
+/* Welcome */
+.welcome-bg{background:linear-gradient(160deg,#fff5f8,#fff8f4,#f5f8ff)}
+
+/* Countdown */
+.cd-bg{
+  background:linear-gradient(135deg,#2e0d1e 0%,#1a0a10 100%);
+  padding:2.8rem 1.4rem;text-align:center;
+  position:relative;overflow:hidden;
+}
+.cd-bg::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 30% 50%,rgba(196,92,122,.2),transparent 60%),
+             radial-gradient(ellipse at 70% 50%,rgba(122,26,56,.3),transparent 60%);
+}
+.cd-bg .lbl{color:rgba(249,184,206,.65)}
+.cd-bg .stitle{color:#fce8ef}
+.cd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:340px;margin:0 auto;position:relative}
+.cd-box{background:rgba(249,184,206,.1);border-radius:14px;padding:1rem .3rem .7rem;border:.5px solid rgba(249,184,206,.25)}
+.cd-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:var(--cb1);display:block;line-height:1}
+.cd-lbl{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(249,184,206,.6);margin-top:4px;display:block}
+
+/* Detail cards */
+.d-card{
+  display:flex;align-items:flex-start;gap:1rem;
+  background:white;border-radius:16px;padding:1.2rem 1.4rem;
+  border:.5px solid #f4c4d4;margin-bottom:10px;
+  transition:transform .2s,box-shadow .2s;
+}
+.d-card:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(196,92,122,.13)}
+.d-icon{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:19px}
+.d-body strong{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;display:block;margin-bottom:3px}
+.d-body p{font-family:'Cormorant Garamond',serif;font-size:1.2rem;line-height:1.35;color:var(--text)}
+.d-body small{font-size:.78rem;margin-top:2px;display:block;color:var(--muted)}
+.map-btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+  padding:.9rem;border-radius:12px;background:var(--sage);color:white;
+  font-size:.85rem;font-weight:500;text-decoration:none;margin-top:10px;
+  border:none;cursor:pointer;transition:opacity .2s,transform .15s;
+}
+.map-btn:hover{opacity:.88;transform:translateY(-1px)}
+
+/* Details bg */
+.details-bg{background:linear-gradient(160deg,#fff5f8,#fff8f4)}
+
+/* Program */
+.prog-bg{background:linear-gradient(145deg,#fff0f5,#fdf5ff,#f0f8ff)}
+.tl-wrap{position:relative;padding-left:2rem}
+.tl-line{position:absolute;left:7px;top:8px;bottom:8px;width:1.5px;border-radius:2px}
+.tl-item{position:relative;margin-bottom:1.8rem}
+.tl-dot{position:absolute;left:-2rem;top:3px;width:11px;height:11px;border-radius:50%;border:2px solid white}
+.tl-time{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:3px}
+.tl-event{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--text)}
+.tl-desc{font-size:.8rem;margin-top:2px;color:var(--muted)}
+
+/* Dress code */
+.dress-bg{background:linear-gradient(160deg,#fff8f8,#f8fff5)}
+.swatches{display:flex;gap:10px;flex-wrap:wrap;margin-top:1rem}
+.sw{display:flex;flex-direction:column;align-items:center;gap:5px;flex:1;min-width:52px}
+.sw-circle{width:46px;height:46px;border-radius:50%;border:.5px solid rgba(0,0,0,.07)}
+.sw span{font-size:.58rem;color:var(--muted);text-align:center}
+
+/* RSVP */
+.rsvp-outer{background:linear-gradient(145deg,#2e0d1e,#1a0a10);padding:3rem 1.4rem;position:relative;overflow:hidden}
+.rsvp-outer::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at 20% 80%,rgba(196,92,122,.15),transparent 50%),
+             radial-gradient(ellipse at 80% 20%,rgba(122,26,56,.2),transparent 50%);
+}
+.rsvp-outer .lbl{color:rgba(249,184,206,.7)}
+.rsvp-outer .stitle{color:#fce8ef}
+.rsvp-outer .sub-p{color:rgba(244,208,220,.6);font-size:.88rem;line-height:1.7;margin-bottom:1.6rem}
+.rsvp-card{background:rgba(255,245,248,.97);border-radius:20px;padding:2rem 1.4rem;border:.5px solid rgba(249,184,206,.4);position:relative}
+.form-row{margin-bottom:1rem}
+.form-row label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px}
+.form-row input,.form-row select{
+  width:100%;padding:.75rem 1rem;border-radius:10px;
+  border:1px solid #f4c4d4;background:#fff5f8;
+  font-family:'Inter',sans-serif;font-size:.9rem;color:var(--text);
+  outline:none;transition:border-color .2s;
+}
+.form-row input:focus,.form-row select:focus{border-color:var(--cb3)}
+.radio-group{display:flex;gap:8px;flex-wrap:wrap}
+.radio-opt{
+  flex:1;min-width:70px;padding:.65rem .5rem;border-radius:10px;
+  border:1px solid #f4c4d4;text-align:center;cursor:pointer;
+  font-size:.82rem;color:var(--muted);transition:all .2s;user-select:none;
+}
+.radio-opt.active{border-color:var(--cb3);background:#fde0ea;color:var(--cb4);font-weight:500}
+.submit-btn{
+  width:100%;padding:1rem;border-radius:12px;border:none;
+  background:linear-gradient(135deg,var(--cb3),var(--cb-deep));
+  color:white;font-size:.95rem;font-weight:500;cursor:pointer;
+  margin-top:.5rem;transition:opacity .2s,transform .15s;letter-spacing:.03em;
+}
+.submit-btn:hover{opacity:.9;transform:translateY(-1px)}
+.submit-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.form-success{text-align:center;padding:2rem 1rem;display:none}
+.form-success .tick{width:64px;height:64px;border-radius:50%;background:#fde0ea;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:30px}
+.form-success h3{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:300;color:var(--text);margin-bottom:.5rem}
+.form-success p{font-size:.88rem;color:var(--muted);line-height:1.7}
+
+.contact-row{display:flex;gap:8px;margin-top:1rem}
+.c-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:.8rem .4rem;border-radius:12px;font-size:.78rem;font-weight:500;text-decoration:none;transition:opacity .2s,transform .15s;border:none;cursor:pointer}
+.c-btn:hover{opacity:.88;transform:translateY(-1px)}
+
+footer{text-align:center;padding:2.5rem 1.5rem 3.5rem;background:#1a0a10}
+footer p{font-size:.74rem;color:rgba(249,184,206,.5);letter-spacing:.07em;line-height:2}
+footer .fn{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--cb1)}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- ════ ENVELOPE SCREEN ════ -->
+<div id="envelope-screen">
+  <div class="env-petals-bg" id="env-petal-bg"></div>
+
+  <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center">
+    <p style="font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(249,184,206,.5);margin-bottom:1.4rem">A Special Invitation</p>
+
+    <div class="env-wrap" id="env-wrap" onclick="openEnvelope()">
+      <div class="env-body">
+        <div class="env-flap" id="env-flap"></div>
+        <div class="env-seal" id="env-seal">🌸</div>
+        <div class="env-card-peek" id="env-card">
+          Saffah Yoosuf<br>&amp;<br>Raihana
+        </div>
+      </div>
+    </div>
+
+    <p class="env-label" id="env-label">Tap to open</p>
+    <p class="env-names">Saffah &amp; Raihana</p>
+    <p style="color:rgba(249,184,206,.4);font-size:.72rem;margin-top:.4rem;letter-spacing:.1em">27 · 09 · 2026</p>
+  </div>
+</div>
+
+<!-- ════ BLOSSOM CANVAS ════ -->
+<div id="blossom-canvas"></div>
+
+<!-- ════ MAIN INVITATION ════ -->
+<div id="main">
+
+<!-- HERO -->
+<section class="hero">
+  <!-- Decorative blossom branch SVG top-left -->
+  <svg class="hero-floral" style="top:-5px;left:-5px;width:190px" viewBox="0 0 190 190" fill="none">
+    <path d="M10 10 Q 60 40 90 90 Q 120 140 150 180" stroke="#c45c7a" stroke-width="1.2" opacity=".3" fill="none"/>
+    <path d="M10 10 Q 50 20 80 60" stroke="#c45c7a" stroke-width=".8" opacity=".2" fill="none"/>
+    <ellipse cx="85" cy="55" rx="14" ry="6" fill="#f9b8ce" transform="rotate(-30 85 55)" opacity=".7"/>
+    <ellipse cx="98" cy="48" rx="12" ry="5" fill="#f4d0dc" transform="rotate(20 98 48)" opacity=".7"/>
+    <ellipse cx="76" cy="66" rx="12" ry="5" fill="#f9b8ce" transform="rotate(-55 76 66)" opacity=".6"/>
+    <ellipse cx="102" cy="62" rx="11" ry="5" fill="#fce8ef" transform="rotate(45 102 62)" opacity=".6"/>
+    <ellipse cx="91" cy="72" rx="10" ry="4" fill="#e8849a" transform="rotate(5 91 72)" opacity=".5"/>
+    <circle cx="91" cy="59" r="4" fill="#ffeef4" opacity=".9"/>
+    <ellipse cx="45" cy="38" rx="10" ry="4" fill="#f9b8ce" transform="rotate(-20 45 38)" opacity=".5"/>
+    <ellipse cx="56" cy="30" rx="9" ry="4" fill="#f4d0dc" transform="rotate(30 56 30)" opacity=".5"/>
+    <circle cx="50" cy="36" r="3" fill="#ffeef4" opacity=".8"/>
+    <ellipse cx="130" cy="130" rx="12" ry="5" fill="#f9b8ce" transform="rotate(-10 130 130)" opacity=".55"/>
+    <ellipse cx="142" cy="123" rx="10" ry="4" fill="#f4d0dc" transform="rotate(40 142 123)" opacity=".5"/>
+    <circle cx="136" cy="128" r="3.5" fill="#ffeef4" opacity=".8"/>
+  </svg>
+  <svg class="hero-floral" style="bottom:-5px;right:-5px;width:190px" viewBox="0 0 190 190" fill="none">
+    <g transform="rotate(180 95 95)">
+      <path d="M10 10 Q 60 40 90 90 Q 120 140 150 180" stroke="#c45c7a" stroke-width="1.2" opacity=".3" fill="none"/>
+      <ellipse cx="85" cy="55" rx="14" ry="6" fill="#f9b8ce" transform="rotate(-30 85 55)" opacity=".7"/>
+      <ellipse cx="98" cy="48" rx="12" ry="5" fill="#f4d0dc" transform="rotate(20 98 48)" opacity=".7"/>
+      <ellipse cx="76" cy="66" rx="12" ry="5" fill="#f9b8ce" transform="rotate(-55 76 66)" opacity=".6"/>
+      <ellipse cx="102" cy="62" rx="11" ry="5" fill="#fce8ef" transform="rotate(45 102 62)" opacity=".6"/>
+      <circle cx="91" cy="59" r="4" fill="#ffeef4" opacity=".9"/>
+      <ellipse cx="130" cy="130" rx="12" ry="5" fill="#f9b8ce" transform="rotate(-10 130 130)" opacity=".5"/>
+      <circle cx="136" cy="128" r="3.5" fill="#ffeef4" opacity=".8"/>
+    </g>
+  </svg>
+
+  <div class="reveal" id="hero-content">
+    <div class="hero-badge">🌸 Nikkah Invitation 🌸</div>
+    <p class="bismillah">﷽</p>
+    <p class="hero-sub">With the blessings of Allah</p>
+    <h1 class="hero-names">
+      Saffah Yoosuf
+      <span class="amp">&amp;</span>
+      Raihana
+    </h1>
+    <div class="hero-date-chip">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="3"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg>
+      27 September 2026 · 10:00 AM
+    </div>
+    <p class="hero-verse">"And He placed between you affection and mercy."<br><em>— Surah Ar-Rum 30:21</em></p>
+  </div>
+  <div class="scroll-cue">
+    <span>Scroll</span>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(244,208,220,.4)" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
+
+<!-- WELCOME -->
+<div class="welcome-bg" style="padding:3rem 1.4rem 2rem">
+  <div style="max-width:480px;margin:0 auto" class="reveal">
+    <span class="lbl" style="color:var(--cb4)">A warm welcome</span>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;line-height:1.9;color:#5a3040;font-style:italic;max-width:360px;margin:0 auto;text-align:center">
+      Two souls, one destiny — bound by faith, love, and the grace of Allah. We joyfully invite you to witness this sacred union and celebrate as we begin our journey together.
+    </p>
+  </div>
+</div>
+
+<!-- COUNTDOWN -->
+<div class="cd-bg reveal" style="margin-top:0">
+  <span class="lbl">Counting the days</span>
+  <p class="stitle" style="color:#fce8ef">27 · 09 · 2026</p>
+  <div class="cd-grid">
+    <div class="cd-box"><span class="cd-num" id="cd-d">--</span><span class="cd-lbl">Days</span></div>
+    <div class="cd-box"><span class="cd-num" id="cd-h">--</span><span class="cd-lbl">Hours</span></div>
+    <div class="cd-box"><span class="cd-num" id="cd-m">--</span><span class="cd-lbl">Mins</span></div>
+    <div class="cd-box"><span class="cd-num" id="cd-s">--</span><span class="cd-lbl">Secs</span></div>
+  </div>
+</div>
+
+<!-- DETAILS -->
+<div class="details-bg" style="padding:2.8rem 0">
+  <div class="band reveal" style="padding-top:0;padding-bottom:0">
+    <span class="lbl" style="color:var(--cb4)">Event details</span>
+    <h2 class="stitle">Join us on our special day</h2>
+
+    <div class="d-card">
+      <div class="d-icon" style="background:#fde0ea;color:var(--cb4)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="3"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg>
+      </div>
+      <div class="d-body"><strong style="color:var(--cb4)">Date</strong><p>Sunday, 27 September 2026</p></div>
+    </div>
+
+    <div class="d-card">
+      <div class="d-icon" style="background:var(--lav-l);color:var(--lav)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 15.5"/></svg>
+      </div>
+      <div class="d-body"><strong style="color:var(--lav)">Nikkah time</strong><p>10:00 AM onwards</p><small>Reception to follow the ceremony</small></div>
+    </div>
+
+    <div class="d-card">
+      <div class="d-icon" style="background:var(--sage-l);color:var(--sage)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 21s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 7.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="2.5"/></svg>
+      </div>
+      <div class="d-body"><strong style="color:var(--sage)">Venue</strong><p>Taj Convention Centre</p><small>Chemmad, Kerala</small></div>
+    </div>
+
+    <a class="map-btn" href="https://maps.app.goo.gl/4mJTc1dnJ5ospWof9" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+      Open in Maps
+    </a>
+  </div>
+</div>
+
+<!-- PROGRAM -->
+<div class="prog-bg" style="padding:2.8rem 1.4rem">
+  <div style="max-width:480px;margin:0 auto" class="reveal">
+    <span class="lbl" style="color:var(--lav)">Program</span>
+    <h2 class="stitle">Order of the day</h2>
+    <div class="tl-wrap">
+      <div class="tl-line" style="background:linear-gradient(to bottom,var(--cb3),var(--lav),var(--sage))"></div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--cb3)"></div>
+        <p class="tl-time" style="color:var(--cb3)">10:00 AM</p>
+        <p class="tl-event">Guests Arrive &amp; Reception</p>
+        <p class="tl-desc">Welcome, warm greetings &amp; light refreshments</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--lav)"></div>
+        <p class="tl-time" style="color:var(--lav)">Nikkah Ceremony</p>
+        <p class="tl-event">The Sacred Nikkah</p>
+        <p class="tl-desc">Vows, blessings &amp; the union of two hearts</p>
+      </div>
+      <div class="tl-item" style="margin-bottom:0">
+        <div class="tl-dot" style="background:var(--sage)"></div>
+        <p class="tl-time" style="color:var(--sage)">Following Ceremony</p>
+        <p class="tl-event">Celebration &amp; Walimah</p>
+        <p class="tl-desc">Dining, joy &amp; togetherness with loved ones</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DRESS CODE -->
+<div class="dress-bg" style="padding:2.8rem 1.4rem">
+  <div style="max-width:480px;margin:0 auto" class="reveal">
+    <span class="lbl" style="color:var(--peach)">Dress code</span>
+    <h2 class="stitle">Pastel palette</h2>
+    <p style="font-size:.88rem;color:var(--muted);line-height:1.7">Dress in soft, pastel hues to complement the elegance of the occasion.</p>
+    <div class="swatches">
+      <div class="sw"><div class="sw-circle" style="background:#f9b8c6"></div><span>Blush Rose</span></div>
+      <div class="sw"><div class="sw-circle" style="background:#b8d8c5"></div><span>Mint Green</span></div>
+      <div class="sw"><div class="sw-circle" style="background:#f9d4a0"></div><span>Warm Peach</span></div>
+      <div class="sw"><div class="sw-circle" style="background:#a8d0f0"></div><span>Powder Blue</span></div>
+      <div class="sw"><div class="sw-circle" style="background:#f0d4b8"></div><span>Apricot</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- RSVP -->
+<div class="rsvp-outer">
+  <div style="max-width:480px;margin:0 auto;position:relative">
+    <div class="reveal" style="text-align:center;margin-bottom:1.6rem">
+      <span class="lbl">RSVP</span>
+      <h2 class="stitle">Will you be joining us?</h2>
+      <p class="sub-p">Kindly fill in your details by <strong style="color:var(--cb1)">20 September 2026</strong> so we can joyfully prepare for your presence.</p>
+    </div>
+
+    <div class="rsvp-card reveal">
+      <div class="form-success" id="form-success">
+        <div class="tick">🌸</div>
+        <h3>JazakAllah Khair!</h3>
+        <p>Your RSVP has been received. We're so excited to celebrate with you. See you on 27th September, In Sha Allah!</p>
+      </div>
+      <div id="rsvp-form">
+        <div class="form-row">
+          <label>Full Name *</label>
+          <input type="text" id="f-name" placeholder="Your full name">
+        </div>
+        <div class="form-row">
+          <label>Phone Number *</label>
+          <input type="tel" id="f-phone" placeholder="+91 XXXXX XXXXX">
+        </div>
+        <div class="form-row">
+          <label>Number of Guests (including yourself)</label>
+          <select id="f-guests">
+            <option value="1">1 — Just me</option>
+            <option value="2">2 guests</option>
+            <option value="3">3 guests</option>
+            <option value="4">4 guests</option>
+            <option value="5">5 guests</option>
+            <option value="6+">6 or more</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Dietary preference</label>
+          <div class="radio-group" id="diet-group">
+            <div class="radio-opt active" data-val="Non-Veg">Non-Veg</div>
+            <div class="radio-opt" data-val="Veg">Veg</div>
+            <div class="radio-opt" data-val="Both">Both</div>
+          </div>
+        </div>
+        <div class="form-row">
+          <label>When will you arrive?</label>
+          <select id="f-arrival">
+            <option value="By 10 AM">By 10 AM (Sharp)</option>
+            <option value="10–11 AM">Between 10–11 AM</option>
+            <option value="11 AM–12 PM">Between 11 AM – 12 PM</option>
+            <option value="After 12 PM">After 12 PM</option>
+            <option value="Not sure yet">Not sure yet</option>
+          </select>
+        </div>
+        <div id="form-err" style="font-size:.8rem;color:var(--cb4);margin-bottom:.7rem;display:none">Please enter your name and phone number.</div>
+        <button class="submit-btn" id="submit-btn" onclick="submitRSVP()">Confirm my Attendance 🌸</button>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:1rem">
+      <p style="text-align:center;font-size:.73rem;color:rgba(249,184,206,.45);margin-bottom:10px;letter-spacing:.05em">Or reach us directly</p>
+      <div class="contact-row">
+        <a class="c-btn" style="background:#25d366;color:white" href="https://wa.me/919567731889" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          WhatsApp
+        </a>
+        <a class="c-btn" style="background:rgba(249,184,206,.15);color:var(--cb1);border:.5px solid rgba(249,184,206,.3)" href="mailto:saffahraihana@gmail.com" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Email
+        </a>
+        <a class="c-btn" style="background:rgba(249,184,206,.1);color:var(--cb2);border:.5px solid rgba(249,184,206,.2)" href="tel:+919567731889">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6.06 6.06l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p class="fn">Saffah Yoosuf &amp; Raihana</p>
+  <p>27 · 09 · 2026 &nbsp;·&nbsp; Taj Convention Centre, Chemmad</p>
+  <p style="margin-top:4px;opacity:.5">saffahraihana@gmail.com · +91 95677 31889</p>
+  <p style="margin-top:8px;font-size:.65rem;opacity:.35">Made with 🌸 love</p>
+</footer>
+
+</div><!-- /#main -->
+
+<script>
+// ══ Envelope petals (dark bg version)
+(function(){
+  var bg=document.getElementById('env-petal-bg');
+  var cols=['#f9b8ce','#f4d0dc','#fce8ef','#e8849a','#f0c4d4'];
+  function sp(){
+    var d=document.createElement('div');
+    var sz=5+Math.random()*9;
+    d.style.cssText=[
+      'position:absolute','width:'+sz+'px','height:'+(sz*1.6)+'px',
+      'border-radius:60% 40% 60% 40%/50% 60% 40% 50%',
+      'background:'+cols[Math.floor(Math.random()*5)],
+      'left:'+(Math.random()*100)+'%',
+      'top:-20px',
+      'opacity:0',
+      'animation:blossomFall '+(7+Math.random()*8)+'s linear '+(Math.random()*5)+'s infinite',
+      '--drift:'+(Math.random()*80-40)+'px'
+    ].join(';');
+    bg.appendChild(d);
+  }
+  for(var i=0;i<20;i++) sp();
+})();
+
+// ══ Envelope open
+var opened=false;
+function openEnvelope(){
+  if(opened) return;
+  opened=true;
+  document.getElementById('env-flap').classList.add('open');
+  document.getElementById('env-seal').classList.add('hide');
+  document.getElementById('env-label').style.display='none';
+  setTimeout(function(){
+    document.getElementById('env-card').classList.add('show');
+  },400);
+  setTimeout(function(){
+    document.getElementById('envelope-screen').classList.add('hide');
+    document.getElementById('main').classList.add('visible');
+    startBlossoms();
+    // trigger hero reveal
+    setTimeout(function(){
+      document.getElementById('hero-content').classList.add('visible');
+    },300);
+  },1400);
+}
+
+// ══ Countdown
+function tick(){
+  var t=new Date('2026-09-27T10:00:00+05:30')-new Date();
+  if(t<=0){['d','h','m','s'].forEach(function(k){document.getElementById('cd-'+k).textContent='0'});return}
+  document.getElementById('cd-d').textContent=Math.floor(t/86400000);
+  document.getElementById('cd-h').textContent=String(Math.floor(t%86400000/3600000)).padStart(2,'0');
+  document.getElementById('cd-m').textContent=String(Math.floor(t%3600000/60000)).padStart(2,'0');
+  document.getElementById('cd-s').textContent=String(Math.floor(t%60000/1000)).padStart(2,'0');
+}
+tick(); setInterval(tick,1000);
+
+// ══ Scroll reveal
+var obs=new IntersectionObserver(function(e){
+  e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target)}});
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(function(el){
+  if(el.id!=='hero-content') obs.observe(el);
+});
+
+// ══ Radio
+function initR(gid){
+  document.querySelectorAll('#'+gid+' .radio-opt').forEach(function(o){
+    o.addEventListener('click',function(){
+      document.querySelectorAll('#'+gid+' .radio-opt').forEach(function(x){x.classList.remove('active')});
+      o.classList.add('active');
+    });
+  });
+}
+initR('diet-group');
+function getR(gid){var a=document.querySelector('#'+gid+' .radio-opt.active');return a?a.dataset.val:'';}
+
+// ══ RSVP
+var SHEET_URL='https://script.google.com/macros/s/AKfycbwvdAsMDF_AqTBCo_GLJyTRRLSnlI8FzbZ-Qxxn4xpZrxRnRIGE_WXObLtFxAZkg_g/exec';
+function submitRSVP(){
+  var name=document.getElementById('f-name').value.trim();
+  var phone=document.getElementById('f-phone').value.trim();
+  var err=document.getElementById('form-err');
+  if(!name||!phone){err.style.display='block';return}
+  err.style.display='none';
+  var btn=document.getElementById('submit-btn');
+  btn.disabled=true;btn.textContent='Sending…';
+  var data={
+    name:name,phone:phone,
+    guests:document.getElementById('f-guests').value,
+    diet:getR('diet-group'),
+    arrival:document.getElementById('f-arrival').value,
+    timestamp:new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})
+  };
+  fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify(data)})
+    .then(function(){showSuccess()}).catch(function(){showSuccess()});
+}
+function showSuccess(){
+  document.getElementById('rsvp-form').style.display='none';
+  document.getElementById('form-success').style.display='block';
+}
+
+// ══ Cherry blossom petals (main)
+var bc=document.getElementById('blossom-canvas');
+var bCols=['#f9b8ce','#f4d0dc','#fce8ef','#e8849a','#fdd6e4','#f0b8c8'];
+
+function mkPetal(){
+  // SVG cherry blossom petal shape
+  var svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  var sz=10+Math.random()*14;
+  svg.setAttribute('width',sz);svg.setAttribute('height',sz);
+  svg.setAttribute('viewBox','0 0 20 20');
+  var p=document.createElementNS('http://www.w3.org/2000/svg','path');
+  p.setAttribute('d','M10 2 Q14 6 10 10 Q6 6 10 2Z');
+  p.setAttribute('fill',bCols[Math.floor(Math.random()*bCols.length)]);
+  p.setAttribute('opacity','0.85');
+  svg.appendChild(p);
+  return svg;
+}
+
+function spawnBlossom(){
+  var wrap=document.createElement('div');
+  wrap.className='blossom';
+  var drift=(Math.random()*120-60)+'px';
+  wrap.style.cssText=[
+    'left:'+(Math.random()*105-5)+'vw',
+    'top:-20px',
+    '--drift:'+drift,
+    'animation-duration:'+(6+Math.random()*9)+'s',
+    'animation-delay:'+(Math.random()*4)+'s',
+    'opacity:0'
+  ].join(';');
+  wrap.appendChild(mkPetal());
+  bc.appendChild(wrap);
+  setTimeout(function(){wrap.remove();},16000);
+}
+
+function startBlossoms(){
+  for(var i=0;i<8;i++) spawnBlossom();
+  setInterval(spawnBlossom,1200);
+}
+</script>
+</body>
+</html>
