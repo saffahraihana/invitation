@@ -3,644 +3,546 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Saffah & Raihana — Nikkah Invitation</title>
+<title>Saffah & Raihana — Nikkah 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#fff9f5;color:#3a2630;overflow-x:hidden}
 
-  :root {
-    --rose: #f2c4ce;
-    --rose-dark: #c9899a;
-    --rose-pale: #fdf0f2;
-    --sage: #c8d8c5;
-    --sage-dark: #8aab87;
-    --sage-pale: #f2f7f1;
-    --blush: #f7e8eb;
-    --lavender: #e8e0f0;
-    --lav-dark: #9b89c4;
-    --cream: #fdf8f4;
-    --text: #3a2e2e;
-    --text-muted: #8a7474;
-    --gold: #c9a96e;
-  }
+:root{
+  --rose:#e8607a;--rose-light:#fde8ed;--rose-pale:#fff0f3;
+  --gold:#c9882a;--gold-light:#fdf1dc;
+  --sage:#4a9e74;--sage-light:#e4f5ec;
+  --lav:#7b5ea7;--lav-light:#f0eaf9;
+  --peach:#e8834a;--peach-light:#fdeee4;
+  --sky:#3a8fbf;--sky-light:#e4f2fb;
+  --cream:#fff9f5;--text:#3a2630;--muted:#9a7a85;
+}
 
-  html { scroll-behavior: smooth; }
+/* Hero */
+.hero{
+  position:relative;min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:3rem 1.5rem 5rem;overflow:hidden;
+  background:linear-gradient(160deg,#fff0f3 0%,#fff9f5 40%,#f0eaf9 70%,#e4f5ec 100%);
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--gold-light);border:0.5px solid #e8c87a;
+  border-radius:999px;padding:6px 18px;margin-bottom:1.4rem;
+  font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);
+}
+.bismillah{font-size:1.5rem;color:var(--gold);margin-bottom:0.4rem;opacity:0.9}
+.hero-names{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.8rem,11vw,4.6rem);font-weight:300;line-height:1.1;color:var(--text);
+}
+.hero-names .amp{
+  display:block;font-style:italic;font-size:0.5em;
+  color:var(--rose);letter-spacing:0.08em;margin:0.2em 0;
+}
+.hero-date-chip{
+  display:inline-flex;align-items:center;gap:8px;margin-top:1.6rem;
+  background:var(--rose);color:white;border-radius:999px;
+  padding:8px 22px;font-size:0.85rem;font-weight:500;letter-spacing:0.05em;
+}
+.hero-verse{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1rem;color:var(--muted);margin-top:1.4rem;
+  max-width:290px;line-height:1.75;
+}
+.scroll-cue{
+  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:5px;
+  animation:bob 2s ease-in-out infinite;
+}
+.scroll-cue span{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
 
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--cream);
-    color: var(--text);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+/* Color bands */
+.band{padding:2.8rem 1.4rem;max-width:480px;margin:0 auto}
 
-  /* ── Floral SVG helpers ── */
-  .floral-corner {
-    position: absolute;
-    pointer-events: none;
-    opacity: 0.55;
-  }
+/* Section label */
+.lbl{font-size:0.62rem;letter-spacing:0.25em;text-transform:uppercase;margin-bottom:0.5rem;display:block}
+.stitle{font-family:'Cormorant Garamond',serif;font-size:1.85rem;font-weight:300;line-height:1.2;margin-bottom:1.2rem}
 
-  /* ── Hero ── */
-  .hero {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 3rem 1.5rem 4rem;
-    background: linear-gradient(160deg, #fdf0f2 0%, #fdf8f4 50%, #f2f7f1 100%);
-    overflow: hidden;
-  }
+/* Countdown */
+.cd-wrap{
+  background:linear-gradient(135deg,var(--rose) 0%,var(--lav) 100%);
+  padding:2.8rem 1.4rem;text-align:center;
+}
+.cd-wrap .lbl{color:rgba(255,255,255,0.75)}
+.cd-wrap .stitle{color:white;margin-bottom:1.6rem}
+.cd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:340px;margin:0 auto}
+.cd-box{background:rgba(255,255,255,0.18);border-radius:14px;padding:1rem 0.3rem 0.7rem;border:0.5px solid rgba(255,255,255,0.3)}
+.cd-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:white;display:block;line-height:1}
+.cd-lbl{font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.75);margin-top:4px;display:block}
 
-  .hero-bismillah {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    color: var(--gold);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    margin-bottom: 1.2rem;
-    opacity: 0.9;
-  }
+/* Detail cards */
+.d-card{
+  display:flex;align-items:flex-start;gap:1rem;
+  background:white;border-radius:16px;padding:1.2rem 1.4rem;
+  border:0.5px solid #f0dde4;margin-bottom:10px;
+  transition:transform .2s,box-shadow .2s;
+}
+.d-card:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(232,96,122,0.12)}
+.d-icon{
+  width:42px;height:42px;border-radius:11px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:19px;
+}
+.d-body strong{font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;display:block;margin-bottom:3px}
+.d-body p{font-family:'Cormorant Garamond',serif;font-size:1.2rem;line-height:1.35}
+.d-body small{font-size:0.78rem;margin-top:2px;display:block}
 
-  .hero-sub {
-    font-size: 0.75rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 1rem;
-  }
+.map-btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;padding:0.9rem;border-radius:12px;
+  background:var(--sage);color:white;font-size:0.85rem;font-weight:500;
+  text-decoration:none;margin-top:10px;border:none;cursor:pointer;
+  transition:opacity .2s,transform .15s;
+}
+.map-btn:hover{opacity:0.88;transform:translateY(-1px)}
 
-  .hero-names {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.6rem, 10vw, 4.2rem);
-    font-weight: 300;
-    line-height: 1.15;
-    color: var(--text);
-    letter-spacing: -0.01em;
-  }
+/* Timeline */
+.tl-wrap{position:relative;padding-left:2rem}
+.tl-line{position:absolute;left:7px;top:8px;bottom:8px;width:1.5px;border-radius:2px}
+.tl-item{position:relative;margin-bottom:1.8rem}
+.tl-dot{
+  position:absolute;left:-2rem;top:3px;
+  width:11px;height:11px;border-radius:50%;border:2px solid white;
+}
+.tl-time{font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:3px}
+.tl-event{font-family:'Cormorant Garamond',serif;font-size:1.2rem}
+.tl-desc{font-size:0.8rem;margin-top:2px}
 
-  .hero-names .amp {
-    display: block;
-    font-style: italic;
-    font-size: 0.55em;
-    color: var(--rose-dark);
-    letter-spacing: 0.05em;
-    margin: 0.15em 0;
-  }
+/* Palette swatches */
+.swatches{display:flex;gap:10px;flex-wrap:wrap;margin-top:1rem}
+.sw{display:flex;flex-direction:column;align-items:center;gap:5px;flex:1;min-width:52px}
+.sw-circle{width:46px;height:46px;border-radius:50%;border:0.5px solid rgba(0,0,0,0.07)}
+.sw span{font-size:0.58rem;color:var(--muted);text-align:center}
 
-  .hero-tagline {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 1.05rem;
-    color: var(--text-muted);
-    margin-top: 1.4rem;
-    max-width: 300px;
-    line-height: 1.7;
-  }
+/* RSVP section */
+.rsvp-outer{
+  background:linear-gradient(145deg,#fff0f3,#f0eaf9,#e4f2fb);
+  padding:3rem 1.4rem;
+}
+.rsvp-card{background:white;border-radius:20px;padding:2rem 1.4rem;border:0.5px solid #f0dde4}
+.form-row{margin-bottom:1rem}
+.form-row label{font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px}
+.form-row input,.form-row select{
+  width:100%;padding:0.75rem 1rem;border-radius:10px;
+  border:1px solid #f0dde4;background:#fff9f5;
+  font-family:'Inter',sans-serif;font-size:0.9rem;color:var(--text);
+  outline:none;transition:border-color .2s;
+}
+.form-row input:focus,.form-row select:focus{border-color:var(--rose)}
+.radio-group{display:flex;gap:8px;flex-wrap:wrap}
+.radio-opt{
+  flex:1;min-width:70px;padding:0.65rem 0.5rem;border-radius:10px;
+  border:1px solid #f0dde4;text-align:center;cursor:pointer;
+  font-size:0.82rem;color:var(--muted);transition:all .2s;
+  user-select:none;
+}
+.radio-opt.active{border-color:var(--rose);background:var(--rose-light);color:var(--rose);font-weight:500}
+.submit-btn{
+  width:100%;padding:1rem;border-radius:12px;border:none;
+  background:linear-gradient(135deg,var(--rose),var(--lav));
+  color:white;font-size:0.95rem;font-weight:500;cursor:pointer;
+  margin-top:0.5rem;transition:opacity .2s,transform .15s;letter-spacing:0.03em;
+}
+.submit-btn:hover{opacity:0.9;transform:translateY(-1px)}
+.submit-btn:disabled{opacity:0.6;cursor:not-allowed;transform:none}
+.form-success{
+  text-align:center;padding:2rem 1rem;display:none;
+}
+.form-success .tick{
+  width:60px;height:60px;border-radius:50%;background:var(--sage-light);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;
+  font-size:28px;
+}
+.form-success h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--text);margin-bottom:0.5rem}
+.form-success p{font-size:0.88rem;color:var(--muted);line-height:1.7}
 
-  .hero-divider {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 2rem auto;
-  }
-  .hero-divider span { width: 60px; height: 0.5px; background: var(--rose-dark); opacity: 0.5; }
-  .hero-divider i { color: var(--rose-dark); font-size: 14px; opacity: 0.7; }
+/* Quick contact */
+.contact-row{display:flex;gap:8px;margin-top:1.2rem}
+.c-btn{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:6px;
+  padding:0.8rem 0.5rem;border-radius:12px;font-size:0.8rem;font-weight:500;
+  text-decoration:none;transition:opacity .2s,transform .15s;border:none;cursor:pointer;
+}
+.c-btn:hover{opacity:0.88;transform:translateY(-1px)}
 
-  .scroll-hint {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    animation: bounce 2s infinite;
-  }
-  .scroll-hint span { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); }
-  .scroll-hint svg { opacity: 0.45; }
+footer{text-align:center;padding:2.5rem 1.5rem 3.5rem;background:var(--rose-pale)}
+footer p{font-size:0.75rem;color:var(--muted);letter-spacing:0.07em;line-height:2}
 
-  @keyframes bounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(6px); }
-  }
+/* Reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
 
-  /* ── Sections ── */
-  section {
-    padding: 3.5rem 1.5rem;
-    max-width: 480px;
-    margin: 0 auto;
-  }
-
-  .section-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--rose-dark);
-    margin-bottom: 0.6rem;
-    display: block;
-  }
-
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.9rem;
-    font-weight: 300;
-    color: var(--text);
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-  }
-
-  /* ── Countdown ── */
-  .countdown-section {
-    background: var(--blush);
-    padding: 3rem 1.5rem;
-    text-align: center;
-  }
-
-  .countdown-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    max-width: 360px;
-    margin: 2rem auto 0;
-  }
-
-  .countdown-box {
-    background: white;
-    border-radius: 12px;
-    padding: 1rem 0.4rem 0.8rem;
-    border: 0.5px solid var(--rose);
-  }
-
-  .countdown-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.4rem;
-    font-weight: 300;
-    color: var(--text);
-    line-height: 1;
-    display: block;
-  }
-
-  .countdown-label {
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-top: 4px;
-    display: block;
-  }
-
-  /* ── Details cards ── */
-  .detail-card {
-    background: white;
-    border-radius: 16px;
-    padding: 1.4rem 1.6rem;
-    border: 0.5px solid var(--rose);
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
-  .detail-card:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(200,137,154,0.12); }
-
-  .detail-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    background: var(--blush);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: 18px;
-    color: var(--rose-dark);
-  }
-
-  .detail-content { flex: 1; }
-  .detail-content strong { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 4px; }
-  .detail-content p { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--text); line-height: 1.4; }
-  .detail-content small { font-size: 0.8rem; color: var(--text-muted); }
-
-  /* ── Dress code ── */
-  .palette-row {
-    display: flex;
-    gap: 10px;
-    margin-top: 1.2rem;
-    flex-wrap: wrap;
-  }
-
-  .swatch {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-    flex: 1;
-    min-width: 56px;
-  }
-
-  .swatch-circle {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    border: 0.5px solid rgba(0,0,0,0.07);
-  }
-
-  .swatch span { font-size: 0.6rem; color: var(--text-muted); text-align: center; letter-spacing: 0.04em; }
-
-  /* ── Map button ── */
-  .map-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    padding: 0.9rem 1.2rem;
-    border-radius: 12px;
-    border: 1px solid var(--sage-dark);
-    background: var(--sage-pale);
-    color: var(--sage-dark);
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    text-decoration: none;
-    margin-top: 1rem;
-    transition: background 0.2s, transform 0.15s;
-    cursor: pointer;
-  }
-
-  .map-btn:hover { background: var(--sage); transform: translateY(-1px); }
-
-  /* ── RSVP ── */
-  .rsvp-section {
-    background: linear-gradient(135deg, #fdf0f2, #f2f7f1);
-    border-radius: 24px;
-    padding: 2.5rem 1.5rem;
-    text-align: center;
-    margin: 0 1rem 3rem;
-  }
-
-  .rsvp-section .section-title { margin-bottom: 0.6rem; }
-
-  .rsvp-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 2rem; }
-
-  .rsvp-btns { display: flex; flex-direction: column; gap: 10px; }
-
-  .btn-primary {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 0.95rem 1.5rem;
-    border-radius: 12px;
-    background: var(--rose-dark);
-    color: white;
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: opacity 0.2s, transform 0.15s;
-  }
-
-  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
-
-  .btn-secondary {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 0.95rem 1.5rem;
-    border-radius: 12px;
-    border: 1px solid var(--rose);
-    background: white;
-    color: var(--rose-dark);
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
-  }
-
-  .btn-secondary:hover { background: var(--blush); transform: translateY(-1px); }
-
-  /* ── Footer ── */
-  footer {
-    text-align: center;
-    padding: 2rem 1.5rem 3rem;
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    letter-spacing: 0.08em;
-  }
-
-  footer .heart { color: var(--rose-dark); }
-
-  /* ── Fade-in animation ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(22px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible { opacity: 1; transform: none; }
-
-  /* ── Floral petals ── */
-  .petal-bg {
-    position: absolute;
-    pointer-events: none;
-    opacity: 0;
-    animation: floatPetal linear infinite;
-  }
-
-  @keyframes floatPetal {
-    0%   { transform: translateY(0) rotate(0deg);   opacity: 0; }
-    10%  { opacity: 0.7; }
-    90%  { opacity: 0.5; }
-    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
-  }
+/* Petals */
+.petal{position:fixed;pointer-events:none;z-index:0;border-radius:60% 40% 60% 40%/60% 40% 60% 40%;opacity:0;animation:floatUp linear infinite}
+@keyframes floatUp{0%{transform:translateY(0) rotate(0deg);opacity:0}10%{opacity:0.65}90%{opacity:0.4}100%{transform:translateY(-110vh) rotate(400deg);opacity:0}}
 </style>
 </head>
 <body>
 
-<!-- ══════════ HERO ══════════ -->
-<section class="hero" id="hero">
-  <!-- Floral SVG top-left -->
-  <svg class="floral-corner" style="top:-10px;left:-10px;width:180px" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g opacity="0.6">
-      <ellipse cx="30" cy="30" rx="22" ry="10" fill="#f2c4ce" transform="rotate(-30 30 30)"/>
-      <ellipse cx="55" cy="18" rx="18" ry="8" fill="#e8e0f0" transform="rotate(10 55 18)"/>
-      <ellipse cx="18" cy="58" rx="18" ry="8" fill="#c8d8c5" transform="rotate(-60 18 58)"/>
-      <ellipse cx="75" cy="42" rx="15" ry="7" fill="#f2c4ce" transform="rotate(40 75 42)"/>
-      <ellipse cx="42" cy="75" rx="14" ry="6" fill="#c9a96e" opacity="0.4" transform="rotate(-20 42 75)"/>
-      <circle cx="30" cy="30" r="5" fill="#fdf0f2"/>
-      <circle cx="55" cy="18" r="4" fill="#fdf0f2"/>
-      <circle cx="18" cy="58" r="4" fill="#fdf0f2"/>
-      <line x1="30" y1="30" x2="10" y2="85" stroke="#c8d8c5" stroke-width="0.8" opacity="0.5"/>
-      <line x1="30" y1="30" x2="80" y2="10" stroke="#c8d8c5" stroke-width="0.8" opacity="0.5"/>
-      <line x1="30" y1="30" x2="75" y2="75" stroke="#c8d8c5" stroke-width="0.6" opacity="0.35"/>
-      <ellipse cx="90" cy="20" rx="10" ry="5" fill="#f2c4ce" opacity="0.5" transform="rotate(20 90 20)"/>
-      <ellipse cx="20" cy="95" rx="10" ry="5" fill="#e8e0f0" opacity="0.5" transform="rotate(-50 20 95)"/>
-    </g>
+<!-- ── HERO ── -->
+<section class="hero">
+  <!-- Floral top-left -->
+  <svg style="position:absolute;top:-8px;left:-8px;width:200px;opacity:0.55;pointer-events:none" viewBox="0 0 200 200" fill="none">
+    <ellipse cx="35" cy="35" rx="26" ry="11" fill="#fbb6c4" transform="rotate(-35 35 35)"/>
+    <ellipse cx="65" cy="20" rx="20" ry="9" fill="#d4b8f0" transform="rotate(12 65 20)"/>
+    <ellipse cx="20" cy="68" rx="20" ry="9" fill="#a8d8b9" transform="rotate(-58 20 68)"/>
+    <ellipse cx="90" cy="48" rx="17" ry="8" fill="#fdd9a0" transform="rotate(42 90 48)"/>
+    <ellipse cx="48" cy="90" rx="15" ry="7" fill="#fbb6c4" transform="rotate(-22 48 90)"/>
+    <ellipse cx="110" cy="22" rx="12" ry="6" fill="#a8d8b9" opacity=".7" transform="rotate(15 110 22)"/>
+    <ellipse cx="22" cy="110" rx="12" ry="6" fill="#d4b8f0" opacity=".7" transform="rotate(-45 22 110)"/>
+    <circle cx="35" cy="35" r="5.5" fill="#fff0f3"/>
+    <circle cx="65" cy="20" r="4.5" fill="#fff0f3"/>
+    <circle cx="20" cy="68" r="4.5" fill="#fff0f3"/>
+    <circle cx="90" cy="48" r="4" fill="#fff0f3"/>
+    <line x1="35" y1="35" x2="8" y2="95" stroke="#a8d8b9" stroke-width="0.9" opacity=".45"/>
+    <line x1="35" y1="35" x2="95" y2="8" stroke="#a8d8b9" stroke-width="0.9" opacity=".45"/>
+    <line x1="35" y1="35" x2="90" y2="90" stroke="#d4b8f0" stroke-width="0.7" opacity=".35"/>
   </svg>
-  <!-- Floral SVG bottom-right -->
-  <svg class="floral-corner" style="bottom:-10px;right:-10px;width:180px" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g opacity="0.6" transform="rotate(180 90 90)">
-      <ellipse cx="30" cy="30" rx="22" ry="10" fill="#f2c4ce" transform="rotate(-30 30 30)"/>
-      <ellipse cx="55" cy="18" rx="18" ry="8" fill="#e8e0f0" transform="rotate(10 55 18)"/>
-      <ellipse cx="18" cy="58" rx="18" ry="8" fill="#c8d8c5" transform="rotate(-60 18 58)"/>
-      <ellipse cx="75" cy="42" rx="15" ry="7" fill="#f2c4ce" transform="rotate(40 75 42)"/>
-      <ellipse cx="42" cy="75" rx="14" ry="6" fill="#c9a96e" opacity="0.4" transform="rotate(-20 42 75)"/>
-      <circle cx="30" cy="30" r="5" fill="#fdf0f2"/>
-      <circle cx="55" cy="18" r="4" fill="#fdf0f2"/>
-      <circle cx="18" cy="58" r="4" fill="#fdf0f2"/>
-      <line x1="30" y1="30" x2="10" y2="85" stroke="#c8d8c5" stroke-width="0.8" opacity="0.5"/>
-      <line x1="30" y1="30" x2="80" y2="10" stroke="#c8d8c5" stroke-width="0.8" opacity="0.5"/>
+  <!-- Floral bottom-right -->
+  <svg style="position:absolute;bottom:-8px;right:-8px;width:200px;opacity:0.55;pointer-events:none" viewBox="0 0 200 200" fill="none">
+    <g transform="rotate(180 100 100)">
+      <ellipse cx="35" cy="35" rx="26" ry="11" fill="#fbb6c4" transform="rotate(-35 35 35)"/>
+      <ellipse cx="65" cy="20" rx="20" ry="9" fill="#d4b8f0" transform="rotate(12 65 20)"/>
+      <ellipse cx="20" cy="68" rx="20" ry="9" fill="#a8d8b9" transform="rotate(-58 20 68)"/>
+      <ellipse cx="90" cy="48" rx="17" ry="8" fill="#fdd9a0" transform="rotate(42 90 48)"/>
+      <ellipse cx="48" cy="90" rx="15" ry="7" fill="#fbb6c4" transform="rotate(-22 48 90)"/>
+      <circle cx="35" cy="35" r="5.5" fill="#fff0f3"/>
+      <circle cx="65" cy="20" r="4.5" fill="#fff0f3"/>
+      <line x1="35" y1="35" x2="8" y2="95" stroke="#a8d8b9" stroke-width="0.9" opacity=".45"/>
+      <line x1="35" y1="35" x2="95" y2="8" stroke="#a8d8b9" stroke-width="0.9" opacity=".45"/>
     </g>
   </svg>
 
   <div class="reveal" id="hero-content">
-    <p class="hero-bismillah">﷽</p>
-    <p class="hero-sub">With the blessings of Allah</p>
-
+    <div class="hero-badge">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg>
+      Nikkah Invitation
+    </div>
+    <p class="bismillah">﷽</p>
+    <p style="font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem">With the blessings of Allah</p>
     <h1 class="hero-names">
       Saffah Yoosuf
       <span class="amp">&amp;</span>
       Raihana
     </h1>
-
-    <div class="hero-divider">
-      <span></span>
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c9899a" stroke-width="1.5"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg>
-      <span></span>
+    <div class="hero-date-chip">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="3"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg>
+      27 September 2026 · 10:00 AM
     </div>
-
-    <p class="hero-tagline">"And He placed between you affection and mercy."<br><em>— Surah Ar-Rum 30:21</em></p>
+    <p class="hero-verse">"And He placed between you affection and mercy."<br><em>— Surah Ar-Rum 30:21</em></p>
   </div>
-
-  <div class="scroll-hint">
+  <div class="scroll-cue">
     <span>Scroll</span>
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a7474" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9a7a85" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
   </div>
 </section>
 
-<!-- ══════════ WELCOME MESSAGE ══════════ -->
-<section style="text-align:center; padding-top: 3.5rem; padding-bottom: 0;">
-  <div class="reveal">
-    <span class="section-label">A warm welcome</span>
-    <div style="max-width:400px;margin:0 auto;">
-      <p style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;line-height:1.8;color:#5a4a4a;font-style:italic;">
-        Two souls, one destiny — bound by faith, love, and the grace of Allah. We joyfully invite you to witness this sacred union and share in our happiness as we begin our journey together.
-      </p>
-    </div>
-  </div>
-</section>
+<!-- ── WELCOME ── -->
+<div class="band reveal" style="text-align:center;padding-top:3rem;padding-bottom:1rem">
+  <span class="lbl" style="color:var(--rose)">A warm welcome</span>
+  <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;line-height:1.85;color:#5a4050;font-style:italic;max-width:360px;margin:0 auto">
+    Two souls, one destiny — bound by faith, love, and the grace of Allah. We joyfully invite you to witness this sacred union and celebrate as we begin our journey together.
+  </p>
+</div>
 
-<!-- ══════════ COUNTDOWN ══════════ -->
-<div class="countdown-section reveal" style="margin-top:3rem;">
-  <span class="section-label" style="display:block;text-align:center;">Counting the days</span>
-  <p class="section-title" style="font-size:1.6rem;">27 September 2026</p>
-  <div class="countdown-grid">
-    <div class="countdown-box"><span class="countdown-num" id="cd-days">--</span><span class="countdown-label">Days</span></div>
-    <div class="countdown-box"><span class="countdown-num" id="cd-hours">--</span><span class="countdown-label">Hours</span></div>
-    <div class="countdown-box"><span class="countdown-num" id="cd-mins">--</span><span class="countdown-label">Mins</span></div>
-    <div class="countdown-box"><span class="countdown-num" id="cd-secs">--</span><span class="countdown-label">Secs</span></div>
+<!-- ── COUNTDOWN ── -->
+<div class="cd-wrap reveal" style="margin-top:2rem">
+  <span class="lbl">Counting the days</span>
+  <p class="stitle">27 · 09 · 2026</p>
+  <div class="cd-grid">
+    <div class="cd-box"><span class="cd-num" id="cd-d">--</span><span class="cd-lbl">Days</span></div>
+    <div class="cd-box"><span class="cd-num" id="cd-h">--</span><span class="cd-lbl">Hours</span></div>
+    <div class="cd-box"><span class="cd-num" id="cd-m">--</span><span class="cd-lbl">Mins</span></div>
+    <div class="cd-box"><span class="cd-num" id="cd-s">--</span><span class="cd-lbl">Secs</span></div>
   </div>
 </div>
 
-<!-- ══════════ EVENT DETAILS ══════════ -->
-<section>
-  <div class="reveal">
-    <span class="section-label">Event details</span>
-    <h2 class="section-title">Join us on our special day</h2>
+<!-- ── EVENT DETAILS ── -->
+<div class="band reveal">
+  <span class="lbl" style="color:var(--rose)">Event details</span>
+  <h2 class="stitle">Join us on our special day</h2>
 
-    <div class="detail-card">
-      <div class="detail-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="3"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg>
-      </div>
-      <div class="detail-content">
-        <strong>Date</strong>
-        <p>Sunday, 27 September 2026</p>
-      </div>
+  <div class="d-card">
+    <div class="d-icon" style="background:var(--rose-light);color:var(--rose)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="3"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg>
     </div>
-
-    <div class="detail-card">
-      <div class="detail-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 15.5"/></svg>
-      </div>
-      <div class="detail-content">
-        <strong>Nikkah ceremony</strong>
-        <p>10:00 AM onwards</p>
-        <small>Reception to follow the ceremony</small>
-      </div>
-    </div>
-
-    <div class="detail-card">
-      <div class="detail-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 21s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 7.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="2.5"/></svg>
-      </div>
-      <div class="detail-content">
-        <strong>Venue</strong>
-        <p>Taj Convention Centre</p>
-        <small>Chemmad, Kerala</small>
-      </div>
-    </div>
-
-    <a class="map-btn" href="https://maps.app.goo.gl/4mJTc1dnJ5ospWof9" target="_blank" rel="noopener">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-      Get Directions
-    </a>
-  </div>
-</section>
-
-<!-- ══════════ PROGRAM ══════════ -->
-<section style="background:#fdf0f2; border-radius:24px; margin: 0 1rem; padding: 2.5rem 1.5rem;">
-  <div class="reveal">
-    <span class="section-label">Program</span>
-    <h2 class="section-title">Order of the day</h2>
-
-    <div style="position:relative; padding-left: 2rem;">
-      <div style="position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:var(--rose);opacity:0.5;"></div>
-
-      <div style="position:relative; margin-bottom: 1.8rem;">
-        <div style="position:absolute;left:-2rem;top:2px;width:10px;height:10px;border-radius:50%;background:var(--rose-dark);border:2px solid var(--blush);"></div>
-        <p style="font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--rose-dark);margin-bottom:3px;">10:00 AM</p>
-        <p style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;">Guests Arrive &amp; Reception</p>
-        <p style="font-size:0.82rem;color:var(--text-muted);">Welcome guests, light refreshments</p>
-      </div>
-
-      <div style="position:relative; margin-bottom: 1.8rem;">
-        <div style="position:absolute;left:-2rem;top:2px;width:10px;height:10px;border-radius:50%;background:var(--rose-dark);border:2px solid var(--blush);"></div>
-        <p style="font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--rose-dark);margin-bottom:3px;">Nikkah Ceremony</p>
-        <p style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;">The Sacred Nikkah</p>
-        <p style="font-size:0.82rem;color:var(--text-muted);">Vows &amp; blessings of the union</p>
-      </div>
-
-      <div style="position:relative;">
-        <div style="position:absolute;left:-2rem;top:2px;width:10px;height:10px;border-radius:50%;background:var(--sage-dark);border:2px solid var(--sage-pale);"></div>
-        <p style="font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--sage-dark);margin-bottom:3px;">Following Ceremony</p>
-        <p style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;">Celebration &amp; Walimah</p>
-        <p style="font-size:0.82rem;color:var(--text-muted);">Dining, joy &amp; togetherness</p>
-      </div>
+    <div class="d-body">
+      <strong style="color:var(--rose)">Date</strong>
+      <p>Sunday, 27 September 2026</p>
     </div>
   </div>
-</section>
 
-<!-- ══════════ DRESS CODE ══════════ -->
-<section>
-  <div class="reveal">
-    <span class="section-label">Dress code</span>
-    <h2 class="section-title">Pastel palette</h2>
-    <p style="font-size:0.9rem;color:var(--text-muted);line-height:1.7;margin-bottom:0.5rem;">Dress in soft, pastel hues to complement the elegance of the occasion.</p>
-    <div class="palette-row">
-      <div class="swatch"><div class="swatch-circle" style="background:#f2c4ce;"></div><span>Blush Rose</span></div>
-      <div class="swatch"><div class="swatch-circle" style="background:#c8d8c5;"></div><span>Sage Green</span></div>
-      <div class="swatch"><div class="swatch-circle" style="background:#e8e0f0;"></div><span>Soft Lavender</span></div>
-      <div class="swatch"><div class="swatch-circle" style="background:#f7e4cf;"></div><span>Warm Peach</span></div>
-      <div class="swatch"><div class="swatch-circle" style="background:#c5dde8;"></div><span>Sky Blue</span></div>
+  <div class="d-card">
+    <div class="d-icon" style="background:var(--lav-light);color:var(--lav)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 15.5"/></svg>
+    </div>
+    <div class="d-body">
+      <strong style="color:var(--lav)">Nikkah time</strong>
+      <p>10:00 AM onwards</p>
+      <small style="color:var(--muted)">Reception to follow the ceremony</small>
     </div>
   </div>
-</section>
 
-<!-- ══════════ RSVP ══════════ -->
-<div class="rsvp-section reveal">
-  <span class="section-label">RSVP</span>
-  <h2 class="section-title">Let us know you're coming</h2>
-  <p class="rsvp-desc">Kindly respond by 20 September 2026 so we may joyfully prepare for your presence.</p>
-  <div class="rsvp-btns">
-    <a class="btn-primary" href="https://wa.me/919567731889?text=Assalamu%20Alaykum%2C%20I%20would%20love%20to%20attend%20the%20Nikkah%20of%20Saffah%20%26%20Raihana%20on%2027%20September%202026%20InShaAllah!" target="_blank" rel="noopener">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-      WhatsApp RSVP
-    </a>
-    <a class="btn-secondary" href="mailto:saffahraihana@gmail.com?subject=RSVP%20-%20Nikkah%20of%20Saffah%20%26%20Raihana&body=Assalamu%20Alaykum%2C%0A%0AI%20would%20be%20delighted%20to%20attend%20the%20Nikkah%20ceremony.%0A%0AName%3A%20%0ANumber%20of%20guests%3A%20" target="_blank" rel="noopener">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      Email RSVP
-    </a>
-    <a class="btn-secondary" href="tel:+919567731889">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6.06 6.06l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      Call Us
-    </a>
+  <div class="d-card">
+    <div class="d-icon" style="background:var(--sage-light);color:var(--sage)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 21s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 7.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="2.5"/></svg>
+    </div>
+    <div class="d-body">
+      <strong style="color:var(--sage)">Venue</strong>
+      <p>Taj Convention Centre</p>
+      <small style="color:var(--muted)">Chemmad, Kerala</small>
+    </div>
+  </div>
+
+  <a class="map-btn" href="https://maps.app.goo.gl/4mJTc1dnJ5ospWof9" target="_blank" rel="noopener">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+    Open in Maps
+  </a>
+</div>
+
+<!-- ── PROGRAM ── -->
+<div style="background:linear-gradient(135deg,var(--lav-light),var(--rose-pale));padding:2.8rem 1.4rem">
+  <div style="max-width:480px;margin:0 auto" class="reveal">
+    <span class="lbl" style="color:var(--lav)">Program</span>
+    <h2 class="stitle">Order of the day</h2>
+    <div class="tl-wrap">
+      <div class="tl-line" style="background:linear-gradient(to bottom,var(--rose),var(--lav),var(--sage))"></div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--rose)"></div>
+        <p class="tl-time" style="color:var(--rose)">10:00 AM</p>
+        <p class="tl-event">Guests Arrive &amp; Reception</p>
+        <p class="tl-desc" style="color:var(--muted)">Welcome, warm greetings &amp; light refreshments</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:var(--lav)"></div>
+        <p class="tl-time" style="color:var(--lav)">Nikkah Ceremony</p>
+        <p class="tl-event">The Sacred Nikkah</p>
+        <p class="tl-desc" style="color:var(--muted)">Vows, blessings &amp; the union of two hearts</p>
+      </div>
+      <div class="tl-item" style="margin-bottom:0">
+        <div class="tl-dot" style="background:var(--sage)"></div>
+        <p class="tl-time" style="color:var(--sage)">Following Ceremony</p>
+        <p class="tl-event">Celebration &amp; Walimah</p>
+        <p class="tl-desc" style="color:var(--muted)">Dining, joy &amp; togetherness with loved ones</p>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- ══════════ FOOTER ══════════ -->
+<!-- ── DRESS CODE ── -->
+<div class="band reveal">
+  <span class="lbl" style="color:var(--peach)">Dress code</span>
+  <h2 class="stitle">Pastel palette</h2>
+  <p style="font-size:0.88rem;color:var(--muted);line-height:1.7">Dress in soft, pastel hues to complement the elegance of the occasion.</p>
+  <div class="swatches">
+    <div class="sw"><div class="sw-circle" style="background:#f9b8c6"></div><span>Blush Rose</span></div>
+    <div class="sw"><div class="sw-circle" style="background:#b8d8c5"></div><span>Sage Green</span></div>
+    <div class="sw"><div class="sw-circle" style="background:#d4b8f0"></div><span>Lavender</span></div>
+    <div class="sw"><div class="sw-circle" style="background:#f9d4a0"></div><span>Warm Peach</span></div>
+    <div class="sw"><div class="sw-circle" style="background:#a8d0f0"></div><span>Sky Blue</span></div>
+  </div>
+</div>
+
+<!-- ── RSVP ── -->
+<div class="rsvp-outer">
+  <div style="max-width:480px;margin:0 auto">
+    <div class="reveal" style="text-align:center;margin-bottom:1.6rem">
+      <span class="lbl" style="color:var(--lav)">RSVP</span>
+      <h2 class="stitle">Will you be joining us?</h2>
+      <p style="font-size:0.88rem;color:var(--muted);line-height:1.7">Kindly fill in your details by <strong>20 September 2026</strong> so we can joyfully prepare for your presence.</p>
+    </div>
+
+    <div class="rsvp-card reveal">
+      <!-- Success state -->
+      <div class="form-success" id="form-success">
+        <div class="tick">🌸</div>
+        <h3>JazakAllah Khair!</h3>
+        <p>Your RSVP has been received. We're so excited to celebrate with you on this beautiful day. See you on 27th September, In Sha Allah!</p>
+      </div>
+
+      <!-- Form -->
+      <div id="rsvp-form">
+        <div class="form-row">
+          <label>Full Name *</label>
+          <input type="text" id="f-name" placeholder="Your full name" required>
+        </div>
+        <div class="form-row">
+          <label>Phone Number *</label>
+          <input type="tel" id="f-phone" placeholder="+91 XXXXX XXXXX" required>
+        </div>
+        <div class="form-row">
+          <label>Number of Guests (including yourself)</label>
+          <select id="f-guests">
+            <option value="1">1 — Just me</option>
+            <option value="2">2 guests</option>
+            <option value="3">3 guests</option>
+            <option value="4">4 guests</option>
+            <option value="5">5 guests</option>
+            <option value="6+">6 or more</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>Do you need accommodation / stay?</label>
+          <div class="radio-group" id="stay-group">
+            <div class="radio-opt active" data-val="No">No, thank you</div>
+            <div class="radio-opt" data-val="Yes">Yes, I need stay</div>
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Dietary preference</label>
+          <div class="radio-group" id="diet-group">
+            <div class="radio-opt active" data-val="Non-Veg">Non-Veg</div>
+            <div class="radio-opt" data-val="Veg">Veg</div>
+            <div class="radio-opt" data-val="Both">Both</div>
+          </div>
+        </div>
+        <div class="form-row">
+          <label>When will you arrive?</label>
+          <select id="f-arrival">
+            <option value="By 10 AM (Sharp)">By 10 AM (Sharp)</option>
+            <option value="Between 10-11 AM">Between 10–11 AM</option>
+            <option value="Between 11 AM - 12 PM">Between 11 AM – 12 PM</option>
+            <option value="After 12 PM">After 12 PM</option>
+            <option value="Not sure yet">Not sure yet</option>
+          </select>
+        </div>
+        <div id="form-err" style="font-size:0.8rem;color:var(--rose);margin-bottom:0.7rem;display:none">Please fill in your name and phone number.</div>
+        <button class="submit-btn" id="submit-btn" onclick="submitRSVP()">
+          Confirm my Attendance ✦
+        </button>
+      </div>
+    </div>
+
+    <!-- Quick contact -->
+    <div class="reveal" style="margin-top:1rem">
+      <p style="text-align:center;font-size:0.75rem;color:var(--muted);margin-bottom:10px;letter-spacing:0.05em">Or reach us directly</p>
+      <div class="contact-row">
+        <a class="c-btn" style="background:#25d366;color:white" href="https://wa.me/919567731889" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          WhatsApp
+        </a>
+        <a class="c-btn" style="background:var(--rose-light);color:var(--rose);border:0.5px solid #f0c0cc" href="mailto:saffahraihana@gmail.com" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Email
+        </a>
+        <a class="c-btn" style="background:var(--sky-light);color:var(--sky);border:0.5px solid #b8d8f0" href="tel:+919567731889">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6.06 6.06l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
 <footer>
-  <svg style="margin-bottom:10px;opacity:0.5" width="60" height="1" viewBox="0 0 60 1"><line x1="0" y1="0.5" x2="60" y2="0.5" stroke="#c9899a" stroke-width="0.5"/></svg>
-  <p>Made with <span class="heart">♥</span> for Saffah &amp; Raihana</p>
-  <p style="margin-top:6px;opacity:0.7;">27 · 09 · 2026 · Chemmad</p>
+  <svg style="margin-bottom:12px;opacity:0.4" width="80" height="1" viewBox="0 0 80 1"><line x1="0" y1=".5" x2="80" y2=".5" stroke="#e8607a" stroke-width="0.8"/></svg>
+  <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--rose)">Saffah Yoosuf &amp; Raihana</p>
+  <p>27 · 09 · 2026 &nbsp;·&nbsp; Taj Convention Centre, Chemmad</p>
+  <p style="margin-top:6px;opacity:0.6">Made with ♥ — saffahraihana@gmail.com</p>
 </footer>
 
-<!-- Floating petals -->
-<div id="petals"></div>
+<div id="petals-container"></div>
 
 <script>
-  // Countdown
-  function updateCountdown() {
-    var target = new Date('2026-09-27T10:00:00+05:30');
-    var now = new Date();
-    var diff = target - now;
-    if (diff <= 0) {
-      document.getElementById('cd-days').textContent = '0';
-      document.getElementById('cd-hours').textContent = '0';
-      document.getElementById('cd-mins').textContent = '0';
-      document.getElementById('cd-secs').textContent = '0';
-      return;
-    }
-    var d = Math.floor(diff / 86400000);
-    var h = Math.floor((diff % 86400000) / 3600000);
-    var m = Math.floor((diff % 3600000) / 60000);
-    var s = Math.floor((diff % 60000) / 1000);
-    document.getElementById('cd-days').textContent = d;
-    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
-    document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
-    document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
-  }
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
+// ── Countdown
+function tick(){
+  var t=new Date('2026-09-27T10:00:00+05:30')-new Date();
+  if(t<=0){['d','h','m','s'].forEach(function(k){document.getElementById('cd-'+k).textContent='0'});return}
+  document.getElementById('cd-d').textContent=Math.floor(t/86400000);
+  document.getElementById('cd-h').textContent=String(Math.floor(t%86400000/3600000)).padStart(2,'0');
+  document.getElementById('cd-m').textContent=String(Math.floor(t%3600000/60000)).padStart(2,'0');
+  document.getElementById('cd-s').textContent=String(Math.floor(t%60000/1000)).padStart(2,'0');
+}
+tick(); setInterval(tick,1000);
 
-  // Scroll reveal
-  var reveals = document.querySelectorAll('.reveal');
-  var heroContent = document.getElementById('hero-content');
-  setTimeout(function() { heroContent.classList.add('visible'); }, 200);
+// ── Scroll reveal
+var obs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(function(el){
+  if(el.id==='hero-content')setTimeout(function(){el.classList.add('visible')},180);
+  else obs.observe(el);
+});
 
-  var obs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+// ── Radio groups
+function initRadio(groupId){
+  var opts=document.querySelectorAll('#'+groupId+' .radio-opt');
+  opts.forEach(function(o){
+    o.addEventListener('click',function(){
+      opts.forEach(function(x){x.classList.remove('active')});
+      o.classList.add('active');
     });
-  }, { threshold: 0.15 });
-
-  reveals.forEach(function(el) {
-    if (el.id !== 'hero-content') obs.observe(el);
   });
+}
+initRadio('stay-group'); initRadio('diet-group');
 
-  // Floating petals
-  var colors = ['#f2c4ce','#e8e0f0','#c8d8c5','#f7e4cf','#c5dde8'];
-  var container = document.getElementById('petals');
-  function spawnPetal() {
-    var p = document.createElement('div');
-    p.className = 'petal-bg';
-    var size = 6 + Math.random() * 10;
-    p.style.cssText = [
-      'width:' + size + 'px',
-      'height:' + (size * 1.4) + 'px',
-      'border-radius:60% 40% 60% 40% / 60% 40% 60% 40%',
-      'background:' + colors[Math.floor(Math.random() * colors.length)],
-      'left:' + (Math.random() * 100) + 'vw',
-      'bottom:-20px',
-      'position:fixed',
-      'pointer-events:none',
-      'z-index:0',
-      'animation-duration:' + (7 + Math.random() * 8) + 's',
-      'animation-delay:' + (Math.random() * 4) + 's'
-    ].join(';');
-    container.appendChild(p);
-    setTimeout(function() { p.remove(); }, 16000);
+function getRadioVal(groupId){
+  var a=document.querySelector('#'+groupId+' .radio-opt.active');
+  return a?a.getAttribute('data-val'):'';
+}
+
+// ── RSVP Submit
+var SHEET_URL = 'https://script.google.com/macros/s/AKfycbwvdAsMDF_AqTBCo_GLJyTRRLSnlI8FzbZ-Qxxn4xpZrxRnRIGE_WXObLtFxAZkg_g/exec'; // ← Paste your Google Apps Script Web App URL here
+
+function submitRSVP(){
+  var name=document.getElementById('f-name').value.trim();
+  var phone=document.getElementById('f-phone').value.trim();
+  var err=document.getElementById('form-err');
+  if(!name||!phone){err.style.display='block';return}
+  err.style.display='none';
+
+  var btn=document.getElementById('submit-btn');
+  btn.disabled=true; btn.textContent='Sending…';
+
+  var data={
+    name:name,
+    phone:phone,
+    guests:document.getElementById('f-guests').value,
+    stay:getRadioVal('stay-group'),
+    diet:getRadioVal('diet-group'),
+    arrival:document.getElementById('f-arrival').value,
+    timestamp:new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})
+  };
+
+  if(!SHEET_URL){
+    // Demo mode — show success without actual submission
+    setTimeout(function(){showSuccess()},900);
+    return;
   }
-  setInterval(spawnPetal, 1800);
-  for (var i = 0; i < 3; i++) spawnPetal();
+
+  fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify(data)})
+    .then(function(){showSuccess()})
+    .catch(function(){showSuccess()}); // show success either way — no-cors can't read response
+}
+
+function showSuccess(){
+  document.getElementById('rsvp-form').style.display='none';
+  var s=document.getElementById('form-success');
+  s.style.display='block';
+}
+
+// ── Petals
+var pc=document.getElementById('petals-container');
+var pcs=['#f9b8c6','#d4b8f0','#b8d8c5','#f9d4a0','#a8d0f0'];
+function spawnPetal(){
+  var p=document.createElement('div');
+  p.className='petal';
+  var sz=5+Math.random()*9;
+  p.style.cssText='width:'+sz+'px;height:'+(sz*1.5)+'px;background:'+pcs[Math.floor(Math.random()*5)]+';left:'+(Math.random()*100)+'vw;bottom:-20px;animation-duration:'+(8+Math.random()*8)+'s;animation-delay:'+(Math.random()*3)+'s';
+  pc.appendChild(p);
+  setTimeout(function(){p.remove()},18000);
+}
+setInterval(spawnPetal,1600);
+for(var i=0;i<4;i++)spawnPetal();
 </script>
 </body>
 </html>
